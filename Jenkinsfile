@@ -2,10 +2,21 @@
 
 pipeline {
     agent any
-    parameters {
+    
+    properties ([
+    parameters ([
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
-    }
+    ])
+    
+    ])
+    
     stages {
+        stage('Checking out the source code'){
+            steps {
+                //checkout([$class: 'GitSCM', branches: [[name: '*/dac']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'service', url: 'http://git.lab.local.it/pipelines/osm-deploy.git']]])
+                checkout scm
+            }
+          }
         stage('Example') {
             steps {
                 echo "${params.Greeting} World!"
