@@ -3,12 +3,10 @@
 pipeline {
     agent any
     
-    properties ([
-    parameters ([
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
-    ])
     
-    ])
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    }
     
     stages {
         stage('Checking out the source code'){
